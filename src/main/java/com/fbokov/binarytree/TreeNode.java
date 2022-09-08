@@ -1,0 +1,23 @@
+package com.fbokov.binarytree;
+/**
+ * This is a definition from Leetcode:
+ * https://leetcode.com/problems/binary-tree-preorder-traversal/
+ */
+public class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+      
+    TreeNode() {}
+    TreeNode(int val) { this.val = val; }
+    TreeNode(int val, TreeNode left, TreeNode right) {
+          this.val = val;
+          this.left = left;
+          this.right = right;
+  }
+  
+  @Override
+  public String toString() {
+      return Integer.toString(this.val);
+  }
+}
