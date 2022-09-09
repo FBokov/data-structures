@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PreOrderOnArraysTraversalStrategy implements TraversalStrategy {
+public class PreOrderTraversalOnArraysStrategy implements TraversalStrategy {
     public List<Integer> traversal(TreeNode root) {
         if (root == null) return List.of();
 

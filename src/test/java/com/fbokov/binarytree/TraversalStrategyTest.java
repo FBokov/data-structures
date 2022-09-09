@@ -5,34 +5,38 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
-class TraversalsTest {
-    PreOrderOnArraysTraversalStrategy strategy = new PreOrderOnArraysTraversalStrategy();
+class TraversalStrategyTest {
     BinaryTree bt = new BinaryTree();
    
-    @Test
-    void preOrderTraversalIterativeShouldProcessNull() {
+    @ParameterizedTest
+    @EnumSource
+    void preOrderTraversalIterativeShouldProcessNull(TraversalStrategies strategy) {
         // when
-        var preOrder = strategy.traversal(null);
+        var preOrder = strategy.instance.traversal(null);
 
         // then
         assertEquals(List.of(), preOrder);
     }
 
-    @Test
-    void preOrderTraversalIterativeShouldProcessEmptyTree() {
+    @ParameterizedTest
+    @EnumSource
+    void preOrderTraversalIterativeShouldProcessEmptyTree(TraversalStrategies strategy) {
         // given
         var tree = bt.create(0);
         
         // when
-        var preOrder = strategy.traversal(tree);
+        var preOrder = strategy.instance.traversal(tree);
 
         // then
         assertEquals(List.of(), preOrder);
     }
 
-    @Test
-    void preOrderTraversalIterativeCase1() {
+    @ParameterizedTest
+    @EnumSource
+    void preOrderTraversalIterativeCase1(TraversalStrategies strategy) {
         // given: binary tree
         //              13
         //            /    \
@@ -45,14 +49,15 @@ class TraversalsTest {
         var tree = bt.create(new Integer[] {13, 30, 51, 93, 67, 69, -64, -59, 95, 2, -4, -53, 43, 35});
 
         // when
-        var preOrder = strategy.traversal(tree);
+        var preOrder = strategy.instance.traversal(tree);
 
         // then
         assertEquals(List.of(13, 30, 93, -59, 95, 67, 2, -4, 51, 69, -53, 43, -64, 35), preOrder);
     }
 
-    @Test
-    void preOrderTraversalTestCase1() {
+    @ParameterizedTest
+    @EnumSource
+    void preOrderTraversalTestCase1(TraversalStrategies strategy) {
         // given: binary
         //            1
         //          /  \
@@ -77,14 +82,15 @@ class TraversalsTest {
         var root  = tree1;
 
         // when
-        var preOrder = strategy.traversal(root);
+        var preOrder = strategy.instance.traversal(root);
 
         // then
         assertEquals(List.of(1, 2, 3, 4, 5, 6, 7, 8, 9), preOrder);
     }
 
-    @Test
-    void preOrderTraversalTestCase2() {
+    @ParameterizedTest
+    @EnumSource
+    void preOrderTraversalTestCase2(TraversalStrategies strategy) {
         // given: binary tree
         //           1
         //             \
@@ -95,14 +101,15 @@ class TraversalsTest {
         var root  = new TreeNode(1, null, new TreeNode(2, new TreeNode(3), null));
 
         // when
-        var preOrder = strategy.traversal(root);
+        var preOrder = strategy.instance.traversal(root);
 
         // then
         assertEquals(List.of(1, 2, 3), preOrder);
     }
 
-    @Test
-    void preOrderTraversalTestCase3() {
+    @ParameterizedTest
+    @EnumSource
+    void preOrderTraversalTestCase3(TraversalStrategies strategy) {
         // given: binary tree
         //           1
         //          /
@@ -115,14 +122,15 @@ class TraversalsTest {
         var root  = new TreeNode(1, new TreeNode(2, new TreeNode(3, new TreeNode(4), null), null), null);
 
         // when
-        var preOrder = strategy.traversal(root);
+        var preOrder = strategy.instance.traversal(root);
 
         // then
         assertEquals(List.of(1, 2, 3, 4), preOrder);
     }
 
-    @Test
-    void preOrderTraversalTestCase4() {
+    @ParameterizedTest
+    @EnumSource
+    void preOrderTraversalTestCase4(TraversalStrategies strategy) {
         // given: binary tree
         //           1
         //            \
@@ -135,21 +143,22 @@ class TraversalsTest {
         var root  = new TreeNode(1, null, new TreeNode(2, null, new TreeNode(3, null, new TreeNode(4))));
 
         // when
-        var preOrder = strategy.traversal(root);
+        var preOrder = strategy.instance.traversal(root);
 
         // then
         assertEquals(List.of(1, 2, 3, 4), preOrder);
     }
 
-    @Test
-    void preOrderTraversalTestCase5() {
+    @ParameterizedTest
+    @EnumSource
+    void preOrderTraversalTestCase5(TraversalStrategies strategy) {
         // given
         //         1
         // input: root = [1]
         var root  = new TreeNode(1);
 
         // when
-        var preOrder = strategy.traversal(root);
+        var preOrder = strategy.instance.traversal(root);
 
         // then
         assertEquals(List.of(1), preOrder);
