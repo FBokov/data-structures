@@ -1,63 +1,12 @@
 package com.fbokov.binarytree;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
-public class Traversals {
+public class BinaryTree {
     private final Random rand = new Random();
-
-    public List<Integer> preOrderTraversalIterative(TreeNode root) {
-        if (root == null) return List.of();
-
-        TreeNode[] preOrder = new TreeNode[100];
-        int[] roots = new int[100];
-
-        TreeNode curr = root;
-        int rootIndex = -1;
-
-        for(int i = 0; i < 100; i++) {
-            preOrder[i] = curr;
-            roots[i] = rootIndex;
-
-            if (curr.left != null) {
-                rootIndex = i;
-                curr = curr.left;
-                continue;
-            }
-
-            boolean found = false;
-            while (true) {
-                if (curr.right != null) {
-                    curr = curr.right;
-                    found = true;
-                    break;
-                } 
-                if (rootIndex == -1) break;
-                curr = preOrder[rootIndex];
-                rootIndex = roots[rootIndex];
-            }
-
-            if (found) continue;
-
-            preOrder = Arrays.copyOf(preOrder, i + 1);
-            break;
-        }
-
-        var result = Arrays.stream(preOrder).map(x -> x.val).collect(Collectors.toList());
-        return result;
-    }
-
-    public void inOrderTraversalIterative(TreeNode treeNode) {
-
-    }
-
-    public void postOrderTraversalIterative(TreeNode treeNode) {
-
-    }
-
-    public TreeNode createTree(Integer[] input) {
+    
+    public TreeNode create(Integer[] input) {
         int nodesCount = input.length;
         TreeNode[] initialization = new TreeNode[nodesCount];
 
@@ -86,10 +35,10 @@ public class Traversals {
 
     public TreeNode createRandomTree() {
         int bound = rand.nextInt(100);
-        return createTree(bound);
+        return create(bound);
     }
 
-    public TreeNode createTree(int count) {
+    public TreeNode create(int count) {
         int nodesCount = count;
         if (nodesCount == 0) return null;
 

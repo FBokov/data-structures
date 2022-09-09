@@ -1,50 +1,19 @@
 package com.fbokov.binarytree;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 class TraversalsTest {
-    Traversals traversals = new Traversals();
-
-    @Test
-    void shouldGenerateTree() {
-        // given
-
-        // when
-        var tree = traversals.createTree(100);
-
-        // then - just check that we have correctly generated root
-        assertNotNull(tree);
-        assertNotNull(tree.val);
-        assertNotNull(tree.left);
-        assertNotNull(tree.right);
-    }
-
-    @Test
-    void shouldCreateTree() {
-        // when
-        var preOrder = traversals.createTree(new Integer[] {1, 2, 3, 4});
-
-        // then
-        assertEquals(1, preOrder.val);
-        assertEquals(2, preOrder.left.val);
-        assertEquals(3, preOrder.right.val);
-        assertEquals(4, preOrder.left.left.val);
-
-        assertNull(preOrder.left.right);
-        assertNull(preOrder.right.left);
-        assertNull(preOrder.right.right);
-    }
-
+    PreOrderOnArraysTraversalStrategy strategy = new PreOrderOnArraysTraversalStrategy();
+    BinaryTree bt = new BinaryTree();
+   
     @Test
     void preOrderTraversalIterativeShouldProcessNull() {
         // when
-        var preOrder = traversals.preOrderTraversalIterative(null);
+        var preOrder = strategy.traversal(null);
 
         // then
         assertEquals(List.of(), preOrder);
@@ -53,10 +22,10 @@ class TraversalsTest {
     @Test
     void preOrderTraversalIterativeShouldProcessEmptyTree() {
         // given
-        var tree = traversals.createTree(0);
+        var tree = bt.create(0);
         
         // when
-        var preOrder = traversals.preOrderTraversalIterative(tree);
+        var preOrder = strategy.traversal(tree);
 
         // then
         assertEquals(List.of(), preOrder);
@@ -73,10 +42,10 @@ class TraversalsTest {
         //    / \    / \   /  \     /  
         //  -59 95  2 -4  -53 43   35
         // Input: bt=[13,30,51,93,67,69,-64,-59,95,2,-4,-53,43,35] 
-        var tree = traversals.createTree(new Integer[] {13, 30, 51, 93, 67, 69, -64, -59, 95, 2, -4, -53, 43, 35});
+        var tree = bt.create(new Integer[] {13, 30, 51, 93, 67, 69, -64, -59, 95, 2, -4, -53, 43, 35});
 
         // when
-        var preOrder = traversals.preOrderTraversalIterative(tree);
+        var preOrder = strategy.traversal(tree);
 
         // then
         assertEquals(List.of(13, 30, 93, -59, 95, 67, 2, -4, 51, 69, -53, 43, -64, 35), preOrder);
@@ -108,7 +77,7 @@ class TraversalsTest {
         var root  = tree1;
 
         // when
-        var preOrder = traversals.preOrderTraversalIterative(root);
+        var preOrder = strategy.traversal(root);
 
         // then
         assertEquals(List.of(1, 2, 3, 4, 5, 6, 7, 8, 9), preOrder);
@@ -126,7 +95,7 @@ class TraversalsTest {
         var root  = new TreeNode(1, null, new TreeNode(2, new TreeNode(3), null));
 
         // when
-        var preOrder = traversals.preOrderTraversalIterative(root);
+        var preOrder = strategy.traversal(root);
 
         // then
         assertEquals(List.of(1, 2, 3), preOrder);
@@ -146,7 +115,7 @@ class TraversalsTest {
         var root  = new TreeNode(1, new TreeNode(2, new TreeNode(3, new TreeNode(4), null), null), null);
 
         // when
-        var preOrder = traversals.preOrderTraversalIterative(root);
+        var preOrder = strategy.traversal(root);
 
         // then
         assertEquals(List.of(1, 2, 3, 4), preOrder);
@@ -166,7 +135,7 @@ class TraversalsTest {
         var root  = new TreeNode(1, null, new TreeNode(2, null, new TreeNode(3, null, new TreeNode(4))));
 
         // when
-        var preOrder = traversals.preOrderTraversalIterative(root);
+        var preOrder = strategy.traversal(root);
 
         // then
         assertEquals(List.of(1, 2, 3, 4), preOrder);
@@ -180,7 +149,7 @@ class TraversalsTest {
         var root  = new TreeNode(1);
 
         // when
-        var preOrder = traversals.preOrderTraversalIterative(root);
+        var preOrder = strategy.traversal(root);
 
         // then
         assertEquals(List.of(1), preOrder);
