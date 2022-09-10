@@ -1,6 +1,0 @@
-com/fbokov/binarytree/BinaryTree.class
-com/fbokov/binarytree/TraversalStrategy.class
-com/fbokov/binarytree/PreOrderTraversalRecursiveStrategy.class
-com/fbokov/binarytree/PreOrderTraveralOnStackStrategy.class
-com/fbokov/binarytree/PreOrderTraversalOnArraysStrategy.class
-com/fbokov/binarytree/TreeNode.class
