@@ -1,9 +1,8 @@
 package com.fbokov.binarytree;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-import java.util.stream.Collectors;
 
 public class PreOrderTraveralOnStackStrategy implements TraversalStrategy {
 
@@ -11,15 +10,15 @@ public class PreOrderTraveralOnStackStrategy implements TraversalStrategy {
     public List<Integer> traversal(TreeNode root) {
         if (root == null) return List.of();
 
-        TreeNode[] preOrder = new TreeNode[100];
+        ArrayList<Integer> preOrder = new ArrayList<>(50);
         Stack<TreeNode> tree = new Stack<>();
 
         TreeNode curr = root;
         for(int i = 0; i < 100; i++) {
-            preOrder[i] = curr;
-            tree.push(curr);
+            preOrder.add(curr.val);
 
             if (curr.left != null) {
+                tree.push(curr);
                 curr = curr.left;
                 continue;
             }
@@ -37,11 +36,9 @@ public class PreOrderTraveralOnStackStrategy implements TraversalStrategy {
             }
 
             if (found) continue;
-            preOrder = Arrays.copyOf(preOrder, i + 1);
             break;
         }
 
-        var result = Arrays.stream(preOrder).map(x -> x.val).collect(Collectors.toList());
-        return result;
+        return preOrder;
     }
 }
