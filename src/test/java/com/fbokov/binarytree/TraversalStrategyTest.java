@@ -4,15 +4,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
+@DisplayName("Traversal strategies tests")
 class TraversalStrategyTest {
     BinaryTree bt = new BinaryTree();
    
     @ParameterizedTest
     @EnumSource
-    void preOrderTraversalIterativeShouldProcessNull(TraversalStrategies strategy) {
+    @DisplayName("Should return empty list if tree is null")
+    void shouldProcessNull(TraversalStrategies strategy) {
         // when
         var preOrder = strategy.instance.traversal(null);
 
@@ -22,7 +25,8 @@ class TraversalStrategyTest {
 
     @ParameterizedTest
     @EnumSource
-    void preOrderTraversalIterativeShouldProcessEmptyTree(TraversalStrategies strategy) {
+    @DisplayName("Should return empty list if tree is empty")
+    void shouldProcessEmptyTree(TraversalStrategies strategy) {
         // given
         var tree = bt.create(0);
         
@@ -35,7 +39,8 @@ class TraversalStrategyTest {
 
     @ParameterizedTest
     @EnumSource
-    void preOrderTraversalIterativeCase1(TraversalStrategies strategy) {
+    @DisplayName("Should process full tree")
+    void shouldProcessFullTree(TraversalStrategies strategy) {
         // given: binary tree
         //              13
         //            /    \
@@ -56,7 +61,8 @@ class TraversalStrategyTest {
 
     @ParameterizedTest
     @EnumSource
-    void preOrderTraversalTestCase1(TraversalStrategies strategy) {
+    @DisplayName("Should procedd not balanced tree")
+    void shouldProcessNotBalancedTree(TraversalStrategies strategy) {
         // given: binary
         //            1
         //          /  \
@@ -89,7 +95,8 @@ class TraversalStrategyTest {
 
     @ParameterizedTest
     @EnumSource
-    void preOrderTraversalTestCase2(TraversalStrategies strategy) {
+    @DisplayName("Should process tree with right branch only")
+    void shouldProcessTreeWithRightOnly(TraversalStrategies strategy) {
         // given: binary tree
         //           1
         //             \
@@ -108,7 +115,8 @@ class TraversalStrategyTest {
 
     @ParameterizedTest
     @EnumSource
-    void preOrderTraversalTestCase3(TraversalStrategies strategy) {
+    @DisplayName("Should process tree with left branch only")
+    void shouldProcessTreeWithLeftOnly(TraversalStrategies strategy) {
         // given: binary tree
         //           1
         //          /
@@ -129,7 +137,8 @@ class TraversalStrategyTest {
 
     @ParameterizedTest
     @EnumSource
-    void preOrderTraversalTestCase4(TraversalStrategies strategy) {
+    @DisplayName("Should process tree with right branch only")
+    void shouldProcessTreeWithRightBranchOnly(TraversalStrategies strategy) {
         // given: binary tree
         //           1
         //            \
@@ -150,7 +159,8 @@ class TraversalStrategyTest {
 
     @ParameterizedTest
     @EnumSource
-    void preOrderTraversalTestCase5(TraversalStrategies strategy) {
+    @DisplayName("Should process tree with root only")
+    void shouldProcessTreeWithRootOnly(TraversalStrategies strategy) {
         // given
         //         1
         // input: root = [1]
